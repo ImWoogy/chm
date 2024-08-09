@@ -14,7 +14,7 @@
 
 ## Контакты
 
-Если у вас возникли вопросы или предложения, вы можете связаться с нами через Telegram-канал или написать нам на email@example.com (замените на реальный email, если есть).
+Если у вас возникли вопросы или предложения, вы можете связаться с нами через Telegram-канал
 
 ## Лицензия
 
@@ -46,7 +46,7 @@ Instructions for installation and access to our managers can be found in our Tel
 
 ## Contact
 
-If you have any questions or suggestions, you can reach us through our Telegram channel or email us at email@example.com (replace with your real email if available).
+If you have any questions or suggestions, you can reach us through our Telegram channel
 
 ## License
 
