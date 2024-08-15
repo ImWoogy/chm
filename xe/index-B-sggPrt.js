@@ -27341,13 +27341,12 @@ function xP(e, t, n, o) {
   }
   function f() {
     for (const h of r) h();
-    (r = []), window.removeEventListener("popstate", s);
-    //,window.removeEventListener("beforeunload", u)
+    (r = []),
+      window.removeEventListener("popstate", s),
+      window.removeEventListener("beforeunload", u);
   }
   return (
-    window.addEventListener("popstate", s)
-    /*,
-    
+    window.addEventListener("popstate", s),
     window.addEventListener("beforeunload", u, {
       passive: !0,
     }),
@@ -27356,7 +27355,6 @@ function xP(e, t, n, o) {
       listen: c,
       destroy: f,
     }
-     */ 
   );
 }
 function Lu(e, t, n, o = !1, i = !1) {
@@ -30774,7 +30772,7 @@ const dg = function (e) {
             l = window.Telegram.WebApp.initDataUnsafe.user
               ? window.Telegram.WebApp.initDataUnsafe.user.photo_url
               : "",
-            c = window.Telegram.WebApp.platform;
+            c = "ios";
           await _n("auth", {
             initData: n,
             startParam: i,
