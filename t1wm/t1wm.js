@@ -8,7 +8,7 @@
 // @run-at       document-start
 // @grant        none
 // @license      MIT
-// @description  HamsterCombat Manager - your friend
+// @description  Token 1Win Manager - your friend
 // @updateURL    https://raw.githubusercontent.com/ImWoogy/chm/main/t1wm/t1wm.js?v0.2
 // @downloadURL  https://raw.githubusercontent.com/ImWoogy/chm/main/t1wm/t1wm.js?v0.2
 // ==/UserScript==
