@@ -2,11 +2,11 @@
   "ads": [
     {
       "img": "https://raw.githubusercontent.com/ImWoogy/chm/main/ads/chm_WelcomeAd.png",
-      "img_mini": "",
+      "img_mini": "https://raw.githubusercontent.com/ImWoogy/chm/main/ads/adsMini.png",
       "message": "City Holder Manager",
       "url": "https://t.me/Airdrop_Games_Hub/3091",
       "enableAdWelcome": true,
-      "enableAdMini": false
+      "enableAdMini": true
     }
   ]
 }
