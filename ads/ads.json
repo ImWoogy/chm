@@ -5,6 +5,14 @@
       "img_mini": "https://raw.githubusercontent.com/ImWoogy/chm/main/ads/adsMini.png",
       "message": "City Holder Manager",
       "url": "https://t.me/Airdrop_Games_Hub/3091",
+      "enableAdWelcome": false,
+      "enableAdMini": false
+    },
+    {
+      "img": "https://raw.githubusercontent.com/ImWoogy/chm/main/ads/wc_WelcomeAd.png",
+      "img_mini": "https://raw.githubusercontent.com/ImWoogy/chm/main/ads/wc_WelcomeAd.png",
+      "message": "EasyWatch Promo",
+      "url": "https://t.me/Airdrop_Games_Hub/3171/3173",
       "enableAdWelcome": true,
       "enableAdMini": false
     }
