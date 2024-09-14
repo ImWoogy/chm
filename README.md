@@ -63,7 +63,7 @@ Thank you for choosing Airdrop Games Hub! We hope our managers enhance your gami
 
 ## Tags
 
-- Hamster Combat
+- Hamster Kombat
 - City Holder
 - 1win Token
 - X Empire
