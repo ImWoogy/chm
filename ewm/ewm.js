@@ -3,7 +3,12 @@ function RunManager() {
     console.log('Функция RunManager успешно вызвана из удаленного скрипта!');
     
     // Проверка текущего адреса страницы
-    alert("Test");
+    if (window.location.href !== window.location.origin + '/stream') {
+        // Изменение адреса страницы на /stream
+        window.location.href = '/stream';
+    } else {
+        console.log('Текущий адрес уже равен /stream.');
+    }
 }
 
 // Можно также определить другие функции или переменные, если нужно
