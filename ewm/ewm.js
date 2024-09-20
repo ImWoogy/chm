@@ -1,8 +1,14 @@
 // Функция RunManager, которую мы будем вызывать из основного скрипта
 function RunManager() {
     console.log('Функция RunManager успешно вызвана из удаленного скрипта!');
-    // Изменение адреса страницы
-    window.location.href = '/stream';
+    
+    // Проверка текущего адреса страницы
+    if (window.location.pathname !== '/stream') {
+        // Изменение адреса страницы на /stream
+        window.location.href = '/stream';
+    } else {
+        console.log('Текущий адрес уже равен /stream.');
+    }
 }
 
 // Можно также определить другие функции или переменные, если нужно
