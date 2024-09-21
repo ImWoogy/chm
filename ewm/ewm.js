@@ -7,15 +7,13 @@ async function RunManager() {
   setInterval(checkAndPlay, 20000);
 }
 
-async function checkAndPlay() {
+function checkAndPlay() {
   const player = document.getElementById("stream-live-event");
   if (player) {
-    await new Promise((r) => setTimeout(r, 500));
     const playButton = document.querySelector(
       "button.ytp-large-play-button.ytp-button.ytp-large-play-button-red-bg"
     );
     if (playButton) {
-      await new Promise((r) => setTimeout(r, 500));
       playButton.click();
       trackSpanChanges();
     }
