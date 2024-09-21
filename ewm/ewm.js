@@ -37,15 +37,19 @@ function checkAndPlay() {
     iframe.src = currentSrc.toString(); // Update the iframe src
 
     iframe.onload = () => {
-      const playButton = iframe.contentDocument.querySelector(
-        "button.ytp-large-play-button"
-      );
-      if (playButton) {
-        console.log("Кнопка воспроизведения найдена, выполняем клик.");
-        playButton.click();
-      } else {
-        console.log("Кнопка воспроизведения не найдена.");
-      }
+      // Start searching for the play button every 5 seconds
+      const intervalId = setInterval(() => {
+        const playButton = iframe.contentDocument.querySelector(
+          "button.ytp-large-play-button.ytp-large-play-button-red-bg"
+        );
+        if (playButton) {
+          console.log("Кнопка воспроизведения найдена, выполняем клик.");
+          playButton.click();
+          clearInterval(intervalId); // Stop the search after clicking
+        } else {
+          console.log("Кнопка воспроизведения не найдена, продолжаем поиск...");
+        }
+      }, 5000);
     };
   } else {
     console.log("Видео уже должно быть запущено.");
