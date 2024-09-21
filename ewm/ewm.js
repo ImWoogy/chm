@@ -15,26 +15,30 @@ async function RunManager() {
 
 function checkAndPlay() {
   console.log("checkAndPlay");
-  const player = document.getElementById("stream-live-event");
-  if (player) {
-    console.log('Элемент с id "player" найден.');
 
-    // Ищем кнопку воспроизведения
-    const playButton = document.querySelector(
-      "button.ytp-large-play-button.ytp-button.ytp-large-play-button-red-bg"
-    );
-    if (playButton) {
-      console.log("Кнопка воспроизведения найдена, нажимаем на неё.");
-      playButton.click();
-
-      // Начинаем отслеживать изменение текста в span после нажатия на кнопку
-      trackSpanChanges();
-    } else {
-      console.log("Кнопка воспроизведения не найдена.");
-    }
-  } else {
-    console.log('Элемент с id "player" не найден.');
+  const iframe = document.getElementById("stream-live-event");
+  if (!iframe) {
+    console.log('Элемент с id "stream-live-event" не найден.');
+    return;
   }
+
+  const currentSrc = new URL(iframe.src);
+  const params = currentSrc.searchParams;
+
+  if (!params.has("autoplay") || params.get("autoplay") !== "1") {
+    console.log(
+      "Видео не запущено, добавляем параметр autoplay и перезагружаем iframe."
+    );
+
+    // Add or update the autoplay parameter to 1
+    params.set("autoplay", "1");
+    iframe.src = currentSrc.toString(); // Update the iframe src
+  } else {
+    console.log("Видео уже должно быть запущено.");
+  }
+
+  // Track changes in the span element
+  trackSpanChanges();
 }
 
 function trackSpanChanges() {
