@@ -37,33 +37,38 @@ function checkAndPlay() {
     iframe.src = currentSrc.toString(); // Update the iframe src
 
     iframe.onload = () => {
-      // Function to search and click the play button
-      const searchPlayButton = () => {
+      // Function to emulate the space key press
+      const emulateSpaceKeyPress = () => {
         try {
-          // Check if contentDocument is accessible
-          if (iframe.contentDocument) {
-            const playButton = iframe.contentDocument.querySelector(
-              "button.ytp-large-play-button.ytp-large-play-button-red-bg"
-            );
-            if (playButton) {
-              console.log("Кнопка воспроизведения найдена, выполняем клик.");
-              playButton.click();
-              clearInterval(intervalId); // Stop the search after clicking
-            } else {
-              console.log(
-                "Кнопка воспроизведения не найдена, продолжаем поиск..."
-              );
-            }
+          if (iframe.contentWindow) {
+            // Focus the iframe content window
+            iframe.contentWindow.focus();
+
+            // Create a keyboard event for space key (keyCode 32)
+            const spaceEvent = new KeyboardEvent("keydown", {
+              key: " ",
+              keyCode: 32,
+              code: "Space",
+              which: 32,
+              bubbles: true,
+              cancelable: true,
+              view: iframe.contentWindow,
+            });
+
+            // Dispatch the event on the iframe's body
+            iframe.contentDocument.body.dispatchEvent(spaceEvent);
+            console.log("Эмулируем нажатие клавиши пробел.");
+            clearInterval(intervalId); // Stop the search after dispatching the event
           } else {
-            console.log("iframe.contentDocument is not accessible yet.");
+            console.log("iframe.contentWindow не доступен.");
           }
         } catch (error) {
-          console.error("Ошибка доступа к iframe:", error);
+          console.error("Ошибка эмуляции нажатия клавиши:", error);
         }
       };
 
-      // Start searching for the play button every 5 seconds
-      const intervalId = setInterval(searchPlayButton, 5000);
+      // Start trying to emulate space key press every 5 seconds
+      const intervalId = setInterval(emulateSpaceKeyPress, 5000);
     };
   } else {
     console.log("Видео уже должно быть запущено.");
