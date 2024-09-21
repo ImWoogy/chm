@@ -70,7 +70,7 @@ function trackSpanChanges() {
         if (currentText === lastText) {
           unchangedTime += 10; // Increment unchanged time
 
-          if (unchangedTime >= 60) {
+          if (unchangedTime >= 30) {
             console.log(
               "Текст не изменяется в течение 60 секунд, перезагружаем страницу."
             );
