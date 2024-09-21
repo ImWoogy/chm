@@ -5,10 +5,12 @@ async function RunManager() {
   if (window.location.href !== window.location.origin + "/stream") {
     // Изменение адреса страницы на /stream
     window.location.href = "/stream";
-    await new Promise((r) => setTimeout(r, 500));
   } else {
     console.log("Текущий адрес уже равен /stream.");
   }
+
+  await new Promise((r) => setTimeout(r, 1500));
+
   checkAndPlay();
   setInterval(checkAndPlay, 20000);
 }
