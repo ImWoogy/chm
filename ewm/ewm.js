@@ -27,15 +27,26 @@ function checkAndPlay() {
   const currentSrc = new URL(iframe.src);
   const params = currentSrc.searchParams;
 
-  if (!params.has("autoplay") || params.get("autoplay") !== "1") {
+  if (!params.has("autoplay") || params.get("autoplay") !== "0") {
     console.log(
       "Видео не запущено, добавляем параметр autoplay и перезагружаем iframe."
     );
 
-    // Add or update the autoplay parameter to 1
-    params.set("autoplay", "1");
+    params.set("autoplay", "0");
     params.set("vq", "medium");
     iframe.src = currentSrc.toString(); // Update the iframe src
+
+    iframe.onload = () => {
+      const playButton = iframe.contentDocument.querySelector(
+        "button.ytp-large-play-button"
+      );
+      if (playButton) {
+        console.log("Кнопка воспроизведения найдена, выполняем клик.");
+        playButton.click();
+      } else {
+        console.log("Кнопка воспроизведения не найдена.");
+      }
+    };
   } else {
     console.log("Видео уже должно быть запущено.");
   }
