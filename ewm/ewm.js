@@ -34,6 +34,7 @@ function checkAndPlay() {
 
     // Add or update the autoplay parameter to 1
     params.set("autoplay", "1");
+    params.set("vq", "medium");
     iframe.src = currentSrc.toString(); // Update the iframe src
   } else {
     console.log("Видео уже должно быть запущено.");
