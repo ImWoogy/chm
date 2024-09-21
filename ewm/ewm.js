@@ -3,29 +3,16 @@ async function RunManager() {
 
   if (window.location.href !== window.location.origin + "/stream") {
     window.location.href = "/stream";
-    await new Promise((r) => setTimeout(r, 1500));
+    await new Promise((r) => setTimeout(r, 700));
   } else {
     console.log("Текущий адрес уже равен /stream.");
-     await new Promise((r) => setTimeout(r, 1500));
+    await new Promise((r) => setTimeout(r, 700));
   }
   checkAndPlay();
   setInterval(checkAndPlay, 20000);
 }
 
-function loadYouTubeAPI() {
-  return new Promise((resolve) => {
-    if (typeof YT === "undefined" || typeof YT.Player === "undefined") {
-      const scriptTag = document.createElement("script");
-      scriptTag.src = "https://www.youtube.com/iframe_api";
-      scriptTag.onload = () => resolve();
-      document.head.appendChild(scriptTag);
-    } else {
-      resolve();
-    }
-  });
-}
-
-async function checkAndPlay() {
+function checkAndPlay() {
   console.log("checkAndPlay");
 
   const iframe = document.getElementById("stream-live-event");
@@ -34,31 +21,20 @@ async function checkAndPlay() {
     return;
   }
 
-  await loadYouTubeAPI();
+  const currentSrc = new URL(iframe.src);
+  const params = currentSrc.searchParams;
 
-  const player = new YT.Player(iframe, {
-    events: {
-      onReady: () => {
-        console.log("YouTube Player готов.");
-        playerStateCheck(player);
-      },
-      onError: (event) => {
-        console.error("Ошибка YouTube Player:", event.data);
-      },
-    },
-  });
-}
+  if (!params.has("autoplay") || params.get("autoplay") !== "1") {
+    console.log("Видео не запущено, добавляем параметр autoplay и перезагружаем iframe.");
 
-function playerStateCheck(player) {
-  const playerState = player.getPlayerState();
-
-  if (playerState !== YT.PlayerState.PLAYING) {
-    console.log("Видео не запущено, запускаем воспроизведение.");
-    player.playVideo();
+    // Add or update the autoplay parameter to 1
+    params.set("autoplay", "1");
+    iframe.src = currentSrc.toString(); // Update the iframe src
   } else {
-    console.log("Видео уже воспроизводится.");
+    console.log("Видео уже должно быть запущено.");
   }
 
+  // Track changes in the span element
   trackSpanChanges();
 }
 
