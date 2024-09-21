@@ -1,16 +1,16 @@
-function RunManager() {
+async function RunManager() {
   console.log("Функция RunManager успешно вызвана из удаленного скрипта!");
 
   // Проверка текущего адреса страницы
   if (window.location.href !== window.location.origin + "/stream") {
     // Изменение адреса страницы на /stream
     window.location.href = "/stream";
-
-    checkAndPlay();
-    setInterval(checkAndPlay, 20000);
+    await new Promise((r) => setTimeout(r, 500));
   } else {
     console.log("Текущий адрес уже равен /stream.");
   }
+  checkAndPlay();
+  setInterval(checkAndPlay, 20000);
 }
 
 function checkAndPlay() {
