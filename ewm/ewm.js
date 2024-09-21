@@ -16,6 +16,7 @@ async function RunManager() {
 }
 
 function checkAndPlay() {
+  console.log("checkAndPlay");
   const player = document.getElementById("player");
   if (player) {
     console.log('Элемент с id "player" найден.');
