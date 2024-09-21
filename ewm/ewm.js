@@ -32,49 +32,9 @@ function checkAndPlay() {
       "Видео не запущено, добавляем параметр autoplay и перезагружаем iframe."
     );
 
-    params.set("autoplay", "0");
+    params.set("autoplay", "1");
     params.set("vq", "medium");
     iframe.src = currentSrc.toString(); // Update the iframe src
-
-    iframe.onload = () => {
-      // Function to emulate the space key press
-      const emulateSpaceKeyPress = () => {
-        try {
-          // Check if the contentDocument and body are accessible
-          if (
-            iframe.contentWindow &&
-            iframe.contentDocument &&
-            iframe.contentDocument.body
-          ) {
-            // Focus the iframe content window
-            iframe.contentWindow.focus();
-
-            // Create a keyboard event for space key (keyCode 32)
-            const spaceEvent = new KeyboardEvent("keydown", {
-              key: " ",
-              keyCode: 32,
-              code: "Space",
-              which: 32,
-              bubbles: true,
-              cancelable: true,
-              view: iframe.contentWindow,
-            });
-
-            // Dispatch the event on the iframe's body
-            iframe.contentDocument.body.dispatchEvent(spaceEvent);
-            console.log("Эмулируем нажатие клавиши пробел.");
-            clearInterval(intervalId); // Stop the search after dispatching the event
-          } else {
-            console.log("iframe.contentDocument или body не доступны.");
-          }
-        } catch (error) {
-          console.error("Ошибка эмуляции нажатия клавиши:", error);
-        }
-      };
-
-      // Start trying to emulate space key press every 5 seconds
-      const intervalId = setInterval(emulateSpaceKeyPress, 5000);
-    };
   } else {
     console.log("Видео уже должно быть запущено.");
   }
