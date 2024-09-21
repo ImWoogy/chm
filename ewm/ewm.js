@@ -40,7 +40,12 @@ function checkAndPlay() {
       // Function to emulate the space key press
       const emulateSpaceKeyPress = () => {
         try {
-          if (iframe.contentWindow) {
+          // Check if the contentDocument and body are accessible
+          if (
+            iframe.contentWindow &&
+            iframe.contentDocument &&
+            iframe.contentDocument.body
+          ) {
             // Focus the iframe content window
             iframe.contentWindow.focus();
 
@@ -60,7 +65,7 @@ function checkAndPlay() {
             console.log("Эмулируем нажатие клавиши пробел.");
             clearInterval(intervalId); // Stop the search after dispatching the event
           } else {
-            console.log("iframe.contentWindow не доступен.");
+            console.log("iframe.contentDocument или body не доступны.");
           }
         } catch (error) {
           console.error("Ошибка эмуляции нажатия клавиши:", error);
